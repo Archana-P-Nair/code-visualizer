@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebCraft — HTML, CSS & JS Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Session Join Overlay -->
+  <div class="session-overlay" id="sessionOverlay">
+    <div class="session-modal">
+      <div class="session-header">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <h2>Join a Session</h2>
+        <p>Share a session ID with your team. Everyone sees changes in real time.</p>
+      </div>
+      <div class="session-form">
+        <input type="text" id="sessionIdInput" placeholder="Enter or create session ID" autocomplete="off" maxlength="20">
+        <button type="button" class="btn btn-join" id="joinBtn">Join Session</button>
+        <button type="button" class="btn btn-create" id="createBtn">Create New Session</button>
+        <button type="button" class="btn btn-solo" id="soloBtn">Work Solo</button>
+      </div>
+      <p class="session-error" id="sessionError"></p>
+    </div>
+  </div>
+
+  <div class="app" id="app">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <h1>WebCraft</h1>
+        <span class="subtitle">HTML · CSS · JavaScript</span>
+      </div>
+      <div class="session-info" id="sessionInfo">
+        <span class="session-badge" id="sessionBadge"></span>
+        <button type="button" class="btn btn-copy" id="copyBtn" title="Copy session ID">Copy</button>
+        <span class="user-count" id="userCount"></span>
+        <button type="button" class="btn btn-leave" id="leaveBtn">Leave</button>
+      </div>
+      <div class="controls">
+        <label class="live-toggle">
+          <input type="checkbox" id="livePreview" checked>
+          <span class="toggle-slider"></span>
+          <span class="toggle-label">Live</span>
+        </label>
+        <button type="button" class="btn btn-download" id="downloadBtn" title="Download as ZIP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </button>
+        <button type="button" class="btn btn-run" id="runBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Run
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="editor-panel">
+        <div class="editor-tabs">
+          <button type="button" class="tab active" data-tab="html">HTML</button>
+          <button type="button" class="tab" data-tab="css">CSS</button>
+          <button type="button" class="tab" data-tab="js">JavaScript</button>
+        </div>
+        <div class="editor-container">
+          <div id="html-editor" class="code-editor"></div>
+          <div id="css-editor" class="code-editor hidden"></div>
+          <div id="js-editor" class="code-editor hidden"></div>
+        </div>
+      </section>
+
+      <div class="resizer" id="resizer"></div>
+
+      <section class="preview-panel">
+        <div class="preview-header">
+          <span class="preview-label">Preview</span>
+          <a href="#" id="openInNew" class="link" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+        <iframe id="preview" class="preview-frame" sandbox="allow-scripts allow-same-origin" title="Preview"></iframe>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.3/ace.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
