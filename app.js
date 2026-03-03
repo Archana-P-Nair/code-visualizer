@@ -173,7 +173,8 @@ function connectAndJoin(sessionId, callback) {
   if (socket) {
     socket.disconnect();
   }
-  socket = window.io?.();
+  const socketUrl = typeof window.SOCKET_SERVER_URL !== 'undefined' ? window.SOCKET_SERVER_URL : '';
+  socket = window.io?.(socketUrl || undefined);
   if (!socket) {
     callback?.({ ok: false, error: 'Socket.io not loaded' });
     return;
